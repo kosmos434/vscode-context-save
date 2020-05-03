@@ -2,24 +2,46 @@
 	"name": "save-from-context-menu",
 	"displayName": "Save From Context Menu",
 	"description": "Save and Save All from the context menu",
+	"icon": "images/icon.png",
 	"version": "0.0.1",
+	"publisher": "kosmos434",
 	"engines": {
 		"vscode": "^1.44.0"
 	},
 	"categories": [
-		"Other"
+		"Programming Languages", "Other"
 	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/kosmos434/vscode-context-save"
+	  },
 	"activationEvents": [
-		"onCommand:save-from-context-menu.helloWorld"
+		"*"
 	],
 	"main": "./extension.js",
 	"contributes": {
-		"commands": [
+		"commands": [{
+				"command": "save-from-context-menu.Save",
+				"title": "Save"
+			},
 			{
-				"command": "save-from-context-menu.helloWorld",
-				"title": "Hello World"
+				"command": "save-from-context-menu.SaveAll",
+				"title": "Save All"
 			}
-		]
+		],
+		"menus": {
+			"editor/context": [{
+					"when": "editorFocus",
+					"command": "save-from-context-menu.Save",
+					"group": "savegroup"
+				},
+				{
+					"when": "editorFocus",
+					"command": "save-from-context-menu.SaveAll",
+					"group": "savegroup"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"lint": "eslint .",
